@@ -1,11 +1,13 @@
 # gaxiostests
 
-## Project setup
+## Project setup 
+Run in project root:
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+## Compiles and hot-reloads for development
+Run in project roo:
 ```
 npm run serve
 ```
