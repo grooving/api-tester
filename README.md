@@ -7,7 +7,7 @@ npm install
 ```
 
 ## Compiles and hot-reloads for development
-Run in project roo:
+Run in project root:
 ```
 npm run serve
 ```
