@@ -13,7 +13,7 @@ npm run serve
 
 * Go to [http://localhost:8080/#/authorized](http://localhost:8080/#/authorized) for calls **with** credentials.
 
-* Go to [http://localhost:8080/#/unauthorized](http://localhost:8080/#/unauthorized) for calls **without* credentials.
+* Go to [http://localhost:8080/#/unauthorized](http://localhost:8080/#/unauthorized) for calls **without** credentials.
 
 Within code on **src/Authorized.vue** and **src/UnAuthorized.vue** we can edit **HTTP method, URL, token and JSON message** from request.
 
