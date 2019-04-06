@@ -23,12 +23,19 @@ export default {
     let method = 'POST';
     let token = 'bbe6ccdf208ef31c5530783298ad20b19bcccc01';
     let URI = 'http://localhost:8000/offer/';
+
+    // Body: Only for POST and PUT
     let body = {
 	    "description": "This is a description",
 	    "date": "2019-05-10T10:00:00",
 	    "paymentPackage_id": "1",
 	    "eventLocation_id": "1"
     };
+
+    // Parameters: Only for GET
+    let parameters = {
+      "sort" : "asc"
+    }
 
     // Requests
     console.log('*** Iniciando... ***');
@@ -39,7 +46,9 @@ export default {
         var authorizedGAxios = GAxios;
         authorizedGAxios.defaults.headers.common['Authorization'] = 'Token ' + token;
 
-        authorizedGAxios.get(URI,body).then(response => {
+        authorizedGAxios.get(URI,{
+          params: parameters
+        }).then(response => {
           console.log('*** Se ha obtenido una respuesta de BackEnd ***');
           console.log(response);
         }).catch( err => {
@@ -54,7 +63,7 @@ export default {
         var authorizedGAxios = GAxios;
         authorizedGAxios.defaults.headers.common['Authorization'] = 'Token ' + token;
 
-        authorizedGAxios.post(URI,body).then(response => {
+        authorizedGAxios.post(URI, body).then(response => {
           console.log('*** Se ha obtenido una respuesta de BackEnd ***');
           console.log(response);
         }).catch( err => {
@@ -69,7 +78,7 @@ export default {
         var authorizedGAxios = GAxios;
         authorizedGAxios.defaults.headers.common['Authorization'] = 'Token ' + token;
 
-        authorizedGAxios.put(URI,body).then(response => {
+        authorizedGAxios.put(URI, body).then(response => {
           console.log('*** Se ha obtenido una respuesta de BackEnd ***');
           console.log(response);
         }).catch( err => {
