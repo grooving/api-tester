@@ -23,10 +23,17 @@ export default {
     let method = 'POST';
     //let URI = '';
     let URI = 'http://localhost:8000/api/login/';
+
+    // Body: Only for POST and PUT
     let body = {
       "username":"artist1",
       "password":"artist1artist1"
 
+    }
+
+    // Parameters: Only for GET
+    let parameters = {
+      "sort": "true" 
     }
 
     // Requests
@@ -36,7 +43,9 @@ export default {
 
       if(method.toUpperCase() == 'GET'){
 
-        GAxios.get(URI,body).then(response => {
+        GAxios.get(URI,{
+          params: parameters,
+        }).then(response => {
           console.log('*** Se ha obtenido una respuesta de BackEnd ***');
           console.log(response);
         }).catch( err => {
@@ -48,7 +57,7 @@ export default {
 
       }else if(method.toUpperCase() == 'POST'){
 
-        GAxios.post(URI,body).then(response => {
+        GAxios.post(URI, body).then(response => {
           console.log('*** Se ha obtenido una respuesta de BackEnd ***');
           console.log(response);
         }).catch( err => {
@@ -60,7 +69,7 @@ export default {
 
       }else if(method.toUpperCase() == 'PUT'){
 
-        GAxios.put(URI,body).then(response => {
+        GAxios.put(URI, body).then(response => {
           console.log('*** Se ha obtenido una respuesta de BackEnd ***');
           console.log(response);
         }).catch( err => {

@@ -22,8 +22,10 @@ export default {
     //a30e970fb1373abd904ac7423ee932a1ea0c6d69
     // Parameters
     let method = 'POST';
-    let token = 'a30e970fb1373abd904ac7423ee932a1ea0c6d69';
-    let URI = '/portfolioModule/';
+    let token = 'bbe6ccdf208ef31c5530783298ad20b19bcccc01';
+    let URI = 'http://localhost:8000/offer/';
+
+    // Body: Only for POST and PUT
     let body = {
 
 
@@ -34,6 +36,11 @@ export default {
 
     };
 
+    // Parameters: Only for GET
+    let parameters = {
+      "sort" : "asc"
+    }
+
     // Requests
     console.log('*** Iniciando... ***');
 
@@ -43,7 +50,9 @@ export default {
         var authorizedGAxios = GAxios;
         authorizedGAxios.defaults.headers.common['Authorization'] = 'Token ' + token;
 
-        authorizedGAxios.get(URI,body).then(response => {
+        authorizedGAxios.get(URI,{
+          params: parameters
+        }).then(response => {
           console.log('*** Se ha obtenido una respuesta de BackEnd ***');
           console.log(response);
         }).catch( err => {
@@ -58,7 +67,7 @@ export default {
         var authorizedGAxios = GAxios;
         authorizedGAxios.defaults.headers.common['Authorization'] = 'Token ' + token;
 
-        authorizedGAxios.post(URI,body).then(response => {
+        authorizedGAxios.post(URI, body).then(response => {
           console.log('*** Se ha obtenido una respuesta de BackEnd ***');
           console.log(response);
         }).catch( err => {
@@ -73,7 +82,7 @@ export default {
         var authorizedGAxios = GAxios;
         authorizedGAxios.defaults.headers.common['Authorization'] = 'Token ' + token;
 
-        authorizedGAxios.put(URI,body).then(response => {
+        authorizedGAxios.put(URI, body).then(response => {
           console.log('*** Se ha obtenido una respuesta de BackEnd ***');
           console.log(response);
         }).catch( err => {
@@ -95,7 +104,7 @@ export default {
         })
       }
     }
-    
+
   },
 }
 </script>
