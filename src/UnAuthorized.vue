@@ -13,7 +13,7 @@ export default {
 
   data: function(){
     return{
-      supportedMethods: ['GET', 'POST', 'PUT']
+      supportedMethods: ['GET', 'POST', 'PUT', 'DELETE']
     }
   },
 
@@ -21,17 +21,19 @@ export default {
 
     // Parameters
     let method = 'POST';
+    //let URI = '';
     let URI = 'http://localhost:8000/api/login/';
     let body = {
-      	"username": "artist1",
-	      "password": "artist1artist1",
-    };
+      "username":"artist1",
+      "password":"artist1artist1"
+
+    }
 
     // Requests
     console.log('*** Iniciando... ***');
 
     if(method != undefined && method != null && this.supportedMethods.includes(method.toUpperCase())){
-      
+
       if(method.toUpperCase() == 'GET'){
 
         GAxios.get(URI,body).then(response => {
@@ -68,6 +70,16 @@ export default {
           console.log('*** FIN ***');
         })
 
+      }else if(method.toUpperCase() == 'DELETE'){
+        GAxios.delete(URI,body).then(response => {
+          console.log('*** Se ha obtenido una respuesta de BackEnd ***');
+          console.log(response);
+        }).catch( err => {
+          console.log('*** ERROR: La respuesta no ha sido satisfactoria ***');
+          console.log(err);
+        }).then( x => {
+          console.log('*** FIN ***');
+        })
       }
     }
 
