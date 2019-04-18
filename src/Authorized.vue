@@ -93,6 +93,9 @@ export default {
         })
 
       }else if(method.toUpperCase() == 'DELETE'){
+        
+        var authorizedGAxios = GAxios;
+        authorizedGAxios.defaults.headers.common['Authorization'] = 'Token ' + token;
         GAxios.delete(URI,body).then(response => {
           console.log('*** Se ha obtenido una respuesta de BackEnd ***');
           console.log(response);
