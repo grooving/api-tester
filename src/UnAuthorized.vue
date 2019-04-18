@@ -36,6 +36,11 @@ export default {
       "sort": "true" 
     }
 
+    // Parameters: Only for GET
+    let parameters = {
+      "sort": "true" 
+    }
+
     // Requests
     console.log('*** Iniciando... ***');
 
