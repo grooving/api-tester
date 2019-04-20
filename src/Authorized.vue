@@ -13,21 +13,24 @@ export default {
 
   data: function(){
     return{
-      supportedMethods: ['GET', 'POST', 'PUT', 'DELETE']
+      supportedMethods: ['GET', 'POST', 'PUT', 'DELETE'],
+      supportedLanguages: ['en', 'es'],
     }
   },
 
   mounted: function(){
+    
     //766a98b2070b3deabfeaac5df832fd198533c60d customer1
     //a30e970fb1373abd904ac7423ee932a1ea0c6d69
+
     // Parameters
+    let URI = 'http://localhost:8000/offer/';    
     let method = 'POST';
     let token = 'bbe6ccdf208ef31c5530783298ad20b19bcccc01';
-    let URI = 'http://localhost:8000/offer/';
+    let language = 'es';
 
     // Body: Only for POST and PUT
     let body = {
-
 
     "type": "PHOTO",
     "link": "http://fsdg.com",
@@ -41,14 +44,17 @@ export default {
       "sort" : "asc"
     }
 
-    // Requests
+    // ----- REQUESTS -----------
     console.log('*** Iniciando... ***');
 
-    if(method != undefined && method != null && this.supportedMethods.includes(method.toUpperCase())){
-      if(method.toUpperCase() == 'GET'){
+    if(method && this.supportedMethods.includes(method.toUpperCase()) && 
+      language && this.supportedLanguages.includes(language.toLowerCase())){
+      
+      var authorizedGAxios = GAxios;
+      authorizedGAxios.defaults.headers.common['Authorization'] = 'Token ' + token;
+      authorizedGAxios.defaults.headers.common['Accept-Language'] = language.toLowerCase();
 
-        var authorizedGAxios = GAxios;
-        authorizedGAxios.defaults.headers.common['Authorization'] = 'Token ' + token;
+      if(method.toUpperCase() == 'GET'){
 
         authorizedGAxios.get(URI,{
           params: parameters
@@ -64,9 +70,6 @@ export default {
 
       }else if(method.toUpperCase() == 'POST'){
 
-        var authorizedGAxios = GAxios;
-        authorizedGAxios.defaults.headers.common['Authorization'] = 'Token ' + token;
-
         authorizedGAxios.post(URI, body).then(response => {
           console.log('*** Se ha obtenido una respuesta de BackEnd ***');
           console.log(response);
@@ -78,9 +81,6 @@ export default {
         })
 
       }else if(method.toUpperCase() == 'PUT'){
-
-        var authorizedGAxios = GAxios;
-        authorizedGAxios.defaults.headers.common['Authorization'] = 'Token ' + token;
 
         authorizedGAxios.put(URI, body).then(response => {
           console.log('*** Se ha obtenido una respuesta de BackEnd ***');
@@ -94,9 +94,7 @@ export default {
 
       }else if(method.toUpperCase() == 'DELETE'){
         
-        var authorizedGAxios = GAxios;
-        authorizedGAxios.defaults.headers.common['Authorization'] = 'Token ' + token;
-        GAxios.delete(URI,body).then(response => {
+        authorizedGAxios.delete(URI,body).then(response => {
           console.log('*** Se ha obtenido una respuesta de BackEnd ***');
           console.log(response);
         }).catch( err => {

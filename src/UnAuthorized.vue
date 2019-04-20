@@ -13,16 +13,18 @@ export default {
 
   data: function(){
     return{
-      supportedMethods: ['GET', 'POST', 'PUT', 'DELETE']
+      supportedMethods: ['GET', 'POST', 'PUT', 'DELETE'],
+      supportedLanguages: ['en', 'es'],
     }
   },
 
   mounted: function(){
 
     // Parameters
-    let method = 'POST';
     //let URI = '';
     let URI = 'http://localhost:8000/api/login/';
+    let method = 'POST';
+    let language = 'es';
 
     // Body: Only for POST and PUT
     let body = {
@@ -36,15 +38,13 @@ export default {
       "sort": "true" 
     }
 
-    // Parameters: Only for GET
-    let parameters = {
-      "sort": "true" 
-    }
-
-    // Requests
+    // ----- REQUESTS -----------
     console.log('*** Iniciando... ***');
 
-    if(method != undefined && method != null && this.supportedMethods.includes(method.toUpperCase())){
+    if(method && this.supportedMethods.includes(method.toUpperCase()) && 
+      language && this.supportedLanguages.includes(language.toLowerCase())){
+
+      GAxios.defaults.headers.common['Accept-Language'] = language.toLowerCase();
 
       if(method.toUpperCase() == 'GET'){
 
